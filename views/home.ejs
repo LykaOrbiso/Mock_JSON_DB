@@ -5,8 +5,10 @@
     </head>
 
     <body>
+    <div id="container">
+    
         <center>
-            <img id="image" src="/images/rdplogo.png" />
+            <img id="image" src="images/rdplogo.png" />
             <h4>Mock JSON Database Operations</h4>
         </center>
 
@@ -19,7 +21,7 @@
 
             <input type="text" id="email" placeholder="Email:" required />
 
-            <button type="submit">Add User</button>
+            <button type="submit" onclick="updateUser()"> Edit User</button>
 
         </form>
 
@@ -34,7 +36,7 @@
 
             <input type="text" id="new_email"  placeholder="New Email:" />
 
-            <button type="submit" onclick="updateuser()">Edit User</button>
+            <button type="submit">Edit User</button>
 
         </form>
 
@@ -47,39 +49,34 @@
             <button type="submit" onclick="deleteUser()">Delete User</button>
         </form>
 
+    </div>
     </body>
 
     <script>
         function updateUser(){
-
-            //grab the edit form
-            const editUserForm = document.getElementById('editUserForm');
+            const dleteUserForm = document.getElementById('EditUserForm');
 
             //grab id value from the form input
             const id = document.getElementById('edit_id').value;
 
-            //Insert the id into the action attribute
-            editUserFor.action = '/users/' + id + '/update';
+            // insert the id into the action attribute
+            EditUserForm.action = '/user' + id + '/update';
 
-            //Submit the form
+            //submit the form
             editUserForm.submit();
-
         }
+
 
         function deleteUser(){
-
             //Grab the delete user form
-            const deleteUserForm = document.getElementById('deteleUserForm');
-
-            //Grab id from the input form
-            const id = document.getElementById('delete_Id').value;
-
-            //Insert id into action attribute
-            deleteUserForm.action = '/user/' + id + '/delete';
-
+            const deleteUserForm = document.getElementById('deleteUserForm');
+            //Grab the id from the input form
+            const id = document.getElementById('delete_id').value;
+            //Insert the id into the action attribute
+            deleteUserForm.action = '/users/' + id + '/delete';
             //Submit the form
             deleteUserForm.submit();
-        }
+        }
     </script>
 
 </html>

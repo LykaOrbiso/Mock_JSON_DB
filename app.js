@@ -5,13 +5,14 @@ require('dotenv').config();
 const PORT = process.env.PORT;
 
 
-//Set up the view engine
+// set up the new engine
 app.set('view engine','ejs');
-app.set('views', './views');
+app.set('views','./views');
 
-//Middleware the view engine
+//middleware to serve static files
 app.use(express.static('public'));
 app.use(userRoutes);
-app.listen(PORT, ()=>{
-    console.log(`Connected to the port: ${PORT}`);
+
+app.listen(PORT,()=>{
+    console.log(`connected on port: ${PORT}`);
 });
