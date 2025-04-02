@@ -1,5 +1,5 @@
 const fs = require('fs');
-const filePath = require('database.json');
+const filePath = require('../database.json');
 const { readData, writeData } = require ('../utils/file.js');
 
 
