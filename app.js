@@ -20,6 +20,6 @@ app.use(FixedWindowRateLimit);
 app.use(userRoutes);
 
 
-app.listen(PORT,()=>{
+app.listen(PORT,'0.0.0.0.',()=>{
     console.log(`connected on port: ${PORT}`);
 });
