@@ -1,19 +1,21 @@
 const fs = require('fs');
 const filePath = require('../database.json');
-const { readData, writeData } = require ('../utils/file.js');
+const { readData, writeData } = require('../utils/file.js');
 
-
-async function createuser(req, res){
+async function createUser(req, res){
     try {
-        const date = await readData();
+        const data = await readData();
 
-        //deteremine the last user id
-        const lastUser = data.users(data.users.length - 1);
+        //determine the last user id
+        const lastUser = data.users[data.users.length - 1];
 
-        //what happens if there is no users?
+        //what happens if there is no users?  
+        //ternary operator
         const nextId = lastUser ? lastUser.id + 1 : 1;
 
-        //create a new user object commit it to memory
+    
+
+        //create a new user object 
         const newUser = {
             id: nextId,
             username: req.body.username,
@@ -21,15 +23,16 @@ async function createuser(req, res){
             email: req.body.email,
         }
 
-        //Push the new data to the mock json database
+        //push the new data to memory object
         data.users.push(newUser);
 
-        //commits data by writing it to file
+        //commits data by writing it to file.
         await writeData(data);
+
+        res.redirect('/');
 
     } catch (error) {
         res.status(500).json(`Internal Server Error: ${error}`);
-        
     }
 }
 
