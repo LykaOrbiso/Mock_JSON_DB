@@ -8,6 +8,9 @@ const mongoose = require('mongoose');
 const YAML = require('yamljs');
 const swaggerUI = require('swagger-ui-express');
 const swaggerDocument = YAML.load('./swagger.yaml');
+const uri = 'mongodb+srv://lykapamela:Password123@cluster0.iathguy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
+
 const fixedWindowRateLimit = rateLimit({
  windowsMs: 1 * 15 * 1000,
  max: 10,
@@ -26,8 +29,12 @@ app.use(express.static('public'));
 app.use(fixedWindowRateLimit);
 app.use(userRoutes);
 
+mongoose.connect(uri).then (
+    async () =>{
+        console.log('Connected to MongoDB Server');
 
-
-app.listen(PORT, '0.0.0.0', ()=>{
-    console.log(`Connected on port: ${PORT}`);
-});
+        app.listen(PORT, '0.0.0.0', ()=>{
+            console.log(`Connected on port: ${PORT}`);
+        });
+    }
+).catch((err) => { console.log(`Error: ${err}`)});
